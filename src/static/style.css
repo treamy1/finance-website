@@ -1,11 +1,12 @@
 /* this is the body */
 body {
-  font-family: Arial;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   background-color: white;
   color: black;
 }
+
 .header-container{
   display: flex;
   justify-content: space-between;
@@ -163,3 +164,50 @@ body {
   border-radius: 8px;
   text-align: center;
 }
+
+/* this is for the budget page */
+.budget-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.budget-form-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.budget-chart-container {
+  flex: 1;
+  max-width: 700px;
+  margin-top: 40vh; /* Pushes the chart halfway down the viewport height */
+  transform: translateY(-50%); /* Centers the chart vertically */
+}
+.budget-chart-container h3{
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+#expense-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#expense-list li {
+  background: #f4f4f4;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.positive-balance {
+  color: green;
+}
+
+.negative-balance {
+  color: red;
+}
+

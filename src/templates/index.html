@@ -1,44 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinanceMyLife.com</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script type="text/javascript">
-        function simple_action(target) {
-            window.location = target
-        }
-    </script>
-</head>
-<body>
-    <div class="header-container">
-        <h1 id="finance-header">EYL</h1>
-        <div class="nav-container">
-            <button id="budgeting_btn" onclick="window.location.href='{{ url_for('budget') }}'">
-                Budgeting Tools
-            </button>
-            <button id="savings_btn" onclick="window.location.href='{{ url_for('savings') }}'">
-                Savings Tools
-            </button>
-            <button id="debt_btn" onclick="window.location.href='{{ url_for('debt') }}'">
-                Debt Tools
-            </button>
-            <button id="invest_btn" onclick="window.location.href='{{ url_for('invest') }}'">
-                Investment Tools
-            </button>
-        </div>
-        <div class="button-group">
-            {% if current_user.is_authenticated %}
-                <span id="user_id">{{ current_user.name }}</span>
-                <button id="signout_btn" onclick="window.location.href='{{ url_for('signout') }}'">Signout</button>
-            {% else %}
-                <button id="login_btn" onclick="window.location.href='{{ url_for('login') }}'">Login</button>
-                <button id="signup_btn" onclick="window.location.href='{{ url_for('signup') }}'">Signup</button>
-            {% endif %}
-        </div>
-    </div>
+{% extends 'base.html' %}
 
+{% block title %}EYL.com{% endblock %}
+
+{% block content %}
     <div class="finance-container">
         <h2>Turning Point: The Story of Jamie</h2>
         <p>
@@ -52,22 +16,20 @@
     <div class="about_us-container">
         <h2>About Us</h2>
         <p>
-            We at EYL are a financial literacy group dedicated to helping individuals take control of their finances and achieve financial success. Our platform offers a range of tools and resources, including budgeting, debt repayment, savings, and investment calculators, to empower users to make informed financial decisions and improve their financial well-being. Whether you are struggling with debt, looking to save for the future, or seeking to grow your wealth through investments, EYL provides the tools and guidance you need to turn your financial chaos into success.
+            We at EYL are a financial literacy group dedicated to helping individuals take control of their finances and achieve financial success. Our platform offers a range of tools and resources, including budgeting, debt repayment, savings, and investment tools, to empower users to make informed financial decisions and improve their financial well-being. Whether you are struggling with debt, looking to save for the future, or seeking to grow your wealth through investments, EYL provides the tools and guidance you need to turn your financial chaos into success.
         </p>
     </div>
     <div class="newsletter-container">
         <h2>Stay Up to Date on Finance News</h2>
-        <form id="newsletter_form" action="your_form_submission_url" method="post">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
+        <form id="newsletter_form" action="/subscribe" method="post">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
+            <br>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
             </div>
             <button type="submit">Subscribe</button>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}

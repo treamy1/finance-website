@@ -1,11 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This page will contain budgeting tools</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Budgeting Tools{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<div class="budget-container">
+    <div class="budget-form-container">
+        <h2>Monthly Budget</h2>
+        <form id="income-form">
+            <label for="income">Monthly Income:</label>
+            <input type="number" id="income" name="income" required>
+            <button type="submit">Set Income</button>
+        </form>
+        <form id="expense-form">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+            
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+            
+            <button type="submit">Add Expense</button>
+        </form>
+        <ul id="expense-list"></ul>
+        <h2>Running Total: <span id="running-total">$0.00</span></h2>
+        <h2>Remaining Balance: <span id="remaining-balance" class="positive-balance">$0.00</span></h2>
+    </div>
+
+    <div class="budget-chart-container">
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let xValues = [];
+        let yValues = [];
+        let barColors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+        let runningTotal = 0;
+        let monthlyIncome = 0;
+
+        document.getElementById('income-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            monthlyIncome = parseFloat(document.getElementById('income').value);
+            document.getElementById('income').value = '';
+
+            updateRemainingBalance();
+        });
+
+        document.getElementById('expense-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let category = document.getElementById('category').value;
+            let amount = parseFloat(document.getElementById('amount').value);
+
+            xValues.push(category);
+            yValues.push(amount);
+            runningTotal += amount;
+            
+            document.getElementById('category').value = '';
+            document.getElementById('amount').value = '';
+
+            addExpenseToList(category, amount);
+            updateRunningTotal();
+            updateRemainingBalance();
+            updateChart();
+        });
+
+        function addExpenseToList(category, amount) {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${category}: $${amount.toFixed(2)}`;
+            const expenseList = document.getElementById('expense-list');
+            expenseList.insertBefore(listItem, expenseList.firstChild);
+        }
+
+        function updateRunningTotal() {
+            document.getElementById('running-total').textContent = `$${runningTotal.toFixed(2)}`;
+        }
+
+        function updateRemainingBalance() {
+            const remainingBalance = monthlyIncome - runningTotal;
+            const remainingBalanceElement = document.getElementById('remaining-balance');
+            remainingBalanceElement.textContent = `$${remainingBalance.toFixed(2)}`;
+            console.log(`Remaining balance: ${remainingBalance}`);
+            console.log('Element before class change:', remainingBalanceElement);
+            if (remainingBalance < 0) {
+                console.log('Adding negative-balance class');
+                remainingBalanceElement.classList.remove('positive-balance');
+                remainingBalanceElement.classList.add('negative-balance');
+            } else {
+                console.log('Adding positive-balance class');
+                remainingBalanceElement.classList.remove('negative-balance');
+                remainingBalanceElement.classList.add('positive-balance');
+            }
+            console.log('Element after class change:', remainingBalanceElement);
+        }
+
+        function updateChart() {
+            new Chart(document.getElementById('myChart'), {
+                type: 'pie',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Expenses Break-down'
+                    }
+                }
+            });
+        }
+
+        // Initial empty chart
+        updateChart();
+    });
+</script>
+{% endblock %}

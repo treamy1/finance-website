@@ -104,6 +104,10 @@ body {
 
 /* this is the footer */
 
+.about_us-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
 .about_us-container {
   width: 80%;
   max-width: 800px;
@@ -211,3 +215,103 @@ body {
   color: red;
 }
 
+/* savings html */
+
+.savings-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.savings-container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  margin-top: auto; /* Ensure it's pushed to the bottom */
+}
+.savings-container p {
+  font-size: 18px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #555;
+  text-align: justify; /* Justify the text for better readability */
+}
+
+.savings-rules-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.savings-rules-container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  margin-top: auto; /* Ensure it's pushed to the bottom */
+}
+.savings-rules-container p {
+  font-size: 18px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #555;
+  text-align: justify; /* Justify the text for better readability */
+}
+
+.savings-calculator-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.savings-calculator-container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  margin-top: auto; /* Ensure it's pushed to the bottom */
+}
+.savings-calculator-container p {
+  font-size: 18px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #555;
+  text-align: justify; /* Justify the text for better readability */
+}
+
+/* debt html */
+.debt-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.debt-container {
+  width: 80%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  margin-top: auto; /* Ensure it's pushed to the bottom */
+}
+
+.debt-container p {
+  font-size: 18px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #555;
+  text-align: justify; /* Justify the text for better readability */
+}

@@ -3,6 +3,68 @@
 {% block title %}Savings Tools{% endblock %}
 
 {% block content %}
-    <h1>This page will contain savings tools</h1>
-    <!-- Add specific content for the Budgeting Tools page here -->
+<div class="savings-container">
+    <h2>Importance of Savings</h2>
+    <p>
+        Saving money is crucial for financial stability and peace of mind, providing a safety net for emergencies and reducing the need for high-interest debt. 
+        The benefits of saving include increased financial security, the ability to achieve goals, avoid debt, seize investment opportunities, and enjoy peace of mind. 
+        Specifically, saving for an emergency fund ensures you're prepared for unexpected expenses. Setting aside money for specific goals like vacations, buying a home, education, a new car, and retirement helps you plan and achieve these milestones without financial strain. 
+        Starting early and saving consistently maximizes your financial growth and stability.
+    </p>
+</div>
+<div class="savings-rules-container">
+    <h2>50/30/20 Rule</h2>
+    <p>
+        The 50/30/20 rule is a simple budgeting framework that helps you allocate your income effectively. Under this rule, you should spend 50% of your income on needs, 30% on wants, and 20% on savings and debt repayment. This method ensures that you cover essential expenses while still enjoying discretionary spending and prioritizing your financial goals.
+    </p>
+    <h2>60/30/10 Rule</h2>
+    <p>
+        The 60/30/10 rule is another useful budgeting guideline that divides your income into three categories: 60% for essentials, 30% for discretionary spending, and 10% for savings and investments. This rule is particularly beneficial for individuals with higher fixed expenses, as it allows a larger portion of income to be allocated towards necessary living costs while still encouraging saving and mindful spending.
+    </p>
+</div>
+<div class="savings-calculator-container">
+    <div class="savings-form-container">
+        <h2>Calculate Savings Goal</h2>
+        <form id="income-form">
+            <label for="income">Monthly Income:</label>
+            <input type="number" id="income" name="income" required>
+        </form>
+        <form id="expense-form">
+            <label for="expenses">Monthly Expenses:</label>
+            <input type="number" id="expenses" name="expenses" required>
+        </form>
+        <form id="savings-form">
+            <label for="savings-goal">Savings Goal:</label>
+            <input type="number" id="savings-goal" name="savings-goal" required>
+            <button type="button" onclick="calculateSavings()">Submit</button>
+        </form>
+        <p>Monthly savings: <span id="savings-total">$0.00</span></p>
+        <p>This goal will be achieved in: <span id="estimated-months">0</span> months</p>
+    </div>
+</div>
+<script>
+    function calculateSavings() {
+    // Get the values from the input fields
+    const income = parseFloat(document.getElementById('income').value);
+    const expenses = parseFloat(document.getElementById('expenses').value);
+    const savingsGoal = parseFloat(document.getElementById('savings-goal').value);
+
+    // Calculate the remaining funds after expenses
+    const remainingFunds = income - expenses;
+
+    // Calculate the number of months needed to achieve the savings goal
+    const monthsToGoal = savingsGoal / remainingFunds;
+
+    // Update the monthly savings and estimated months elements
+    document.getElementById('savings-total').textContent = `$${remainingFunds.toFixed(2)}`;
+    document.getElementById('estimated-months').textContent = Math.ceil(monthsToGoal);
+}
+
+// Attach the calculateSavings function to the form submission
+document.getElementById('savings-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    calculateSavings();
+});
+
+</script>
 {% endblock %}

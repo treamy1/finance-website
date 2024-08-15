@@ -57,7 +57,8 @@
 
     // Update the monthly savings and estimated months elements
     document.getElementById('savings-total').textContent = `$${remainingFunds.toFixed(2)}`;
-    document.getElementById('estimated-months').textContent = Math.ceil(monthsToGoal);
+    //document.getElementById('estimated-months').textContent = Math.ceil(monthsToGoal);
+    document.getElementById('estimated-months').textContent = monthsToGoal.toFixed(2);  // Displaying up to two decimal places
 }
 
 // Attach the calculateSavings function to the form submission
